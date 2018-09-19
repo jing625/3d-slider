@@ -1,3 +1,4 @@
+/* 图片样式  */
 .cube-wrap{
     width: 300px;
     height: 300px;
@@ -42,6 +43,8 @@
     transform: rotateX(-90deg) translateZ(150px);
 }
 
+
+/* 魔方样式 */
 .cube-wrap .cube{
     /* ...... */
     animation: spin 10s linear infinite;
@@ -53,4 +56,97 @@
    to {
        transform: rotateX(405deg) rotateY(765deg);
    }
+}
+
+/*----左边和底部样式------*/
+.cube_left .cube_action{
+    left: -75px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.cube_right .cube_action{
+    right: -75px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.cube_action{
+    background-color: #fafafa;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+    position: absolute;
+    transition: opacity 0.5s ease;
+    z-index: 5;
+}
+.cube_action:hover{
+    opacity: 1;
+}
+.cube_action::before{
+    border-bottom: 4px solid #111;
+    border-right: 4px solid #111;
+    content: '';
+    display: block;
+    height: 25%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 25%;
+    transform: translate(-70%, -50%) rotate(-45deg);
+}
+.cube_left .cube_action::before{
+    transform: translate(-40%, -50%) rotate(135deg);
+}
+.indicators{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -80px;
+    padding: 20px;
+    text-align: center;
+    opacity:0;
+    transition: opacity .3s;
+}
+.container:hover .indicators{
+    opacity: 1;
+}
+.indicators .indicator{
+    background-color: #fafafa;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: 6px;
+    opacity: .15;
+}
+.controller{
+    display: none;
+}
+
+
+/* container 入场动画 */
+.container{
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -300px;
+    transition: all .5s ease;
+    transform: scale(0.25);
+}
+.container:hover {
+    transform: scale(1);
+}
+.container:hover .cube-wrap .cube{
+    animation: entrance .5s ease ;
+}
+@keyframes entrance {
+    from {
+        transform: rotateX(-225deg) rotateY(-225deg);
+    }
 }
